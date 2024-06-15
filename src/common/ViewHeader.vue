@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { Button, Input } from "ant-design-vue";
 import { Icon } from "@iconify/vue";
 
@@ -11,13 +11,13 @@ export default {
   data() {
     return {};
   },
-  props: ["updateListType", "dataType"],
+  props: ["updateListType"],
 };
 </script>
 <template>
   <div class="shadow flex justify-between items-center p-3 mb-5">
     <div>
-      <Button>New{{ dataType }}</Button>
+      <Button>New</Button>
     </div>
     <div class="flex">
       <Input type="text" required />

@@ -3,8 +3,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { useTabStore } from "@/stores/TabStore";
+import { defineComponent, onMounted } from "vue";
 export default defineComponent({
+  created() {
+    const tabStore = useTabStore();
+    tabStore.getChildTab("home");
+  },
   props: {
     name: String,
     msg: { type: String },

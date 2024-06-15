@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ViewHeader :dataType="dataType"></ViewHeader>
+    <ViewHeader></ViewHeader>
     <table style="width: 100%" class="shadow">
       <thead>
         <tr>
@@ -74,9 +74,16 @@
 </template>
 
 <script>
+import { useTabStore } from "@/stores/TabStore";
 import ViewHeader from "../../common/ViewHeader.vue";
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 export default defineComponent({
+  setup() {
+    const tabStore = useTabStore();
+    onMounted(() => {
+      tabStore.getChildTab("shift");
+    });
+  },
   data() {
     return {};
   },

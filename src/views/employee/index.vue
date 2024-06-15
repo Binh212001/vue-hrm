@@ -43,10 +43,17 @@ import { Table } from "ant-design-vue";
 import th from "../../assets/img/th.jpg";
 import { mapState } from "pinia";
 import { useEmployeeStore } from "../../stores/EmployeeStore";
-import { defineComponent } from "vue";
-const store = useEmployeeStore();
-store.fetchAllEmployee();
+import { defineComponent, onMounted } from "vue";
+import { useTabStore } from "@/stores/TabStore";
+
 export default defineComponent({
+  created() {
+    const tabStore = useTabStore();
+    const store = useEmployeeStore();
+    store.fetchAllEmployee();
+    tabStore.getChildTab("employee");
+  },
+
   components: {
     Table,
     ViewHeader,
@@ -56,7 +63,6 @@ export default defineComponent({
       this.dataType = type;
     },
   },
-
   computed: {
     ...mapState(useEmployeeStore, ["employee"]),
   },

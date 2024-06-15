@@ -95,19 +95,21 @@
 </template>
 
 <script>
-import ViewHeader from "../../common/ViewHeader.vue";
 import { Table } from "ant-design-vue";
 import { defineComponent } from "vue";
+import ViewHeader from "../../common/ViewHeader.vue";
+import { useTabStore } from "../../stores/TabStore";
 export default defineComponent({
+  created() {
+    const tabStore = useTabStore();
+    tabStore.getChildTab("leave");
+  },
   components: {
     Table,
+    ViewHeader,
   },
   data() {
     return {};
-  },
-
-  components: {
-    ViewHeader,
   },
 });
 </script>

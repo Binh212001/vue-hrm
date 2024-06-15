@@ -1,14 +1,19 @@
 <template>
   <div>
-    <ViewHeader :dataType="dataType"></ViewHeader>
+    <ViewHeader></ViewHeader>
     <a-table :columns="columns" :dataSource="data" rowKey="id" />
   </div>
 </template>
 
 <script>
 import ViewHeader from "../../common/ViewHeader.vue";
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
+import { useTabStore } from "../../stores/TabStore";
 export default defineComponent({
+  created() {
+    const tabStore = useTabStore();
+    tabStore.getChildTab("overtime");
+  },
   data() {
     return {
       dataType: "list",
@@ -57,7 +62,6 @@ export default defineComponent({
       ],
     };
   },
-
   components: {
     ViewHeader,
   },

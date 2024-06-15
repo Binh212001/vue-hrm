@@ -57,6 +57,18 @@ const router = createRouter({
       name: "shift-infomation",
       component: () => import("../views/workshift/shiftinfomation.vue"),
     },
+    //product
+    {
+      path: "/product",
+      name: "product",
+      component: () => import("../views/product/index.vue"),
+    },
+    //product
+    {
+      path: "/bill",
+      name: "bill",
+      component: () => import("../views/bill/index.vue"),
+    },
   ],
 });
 
