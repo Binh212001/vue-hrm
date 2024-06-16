@@ -113,21 +113,9 @@
     </table>
   </div>
 </template>
-<script>
+<script lang="ts">
+import { Button, TypographyTitle } from "ant-design-vue";
 import { defineComponent } from "vue";
-import {
-  Tabs,
-  TabPane,
-  Button,
-  Row,
-  Col,
-  TypographyTitle,
-  TypographyText,
-  DatePicker,
-  Select,
-  SelectOption,
-  Input,
-} from "ant-design-vue";
 
 export default defineComponent({
   components: {

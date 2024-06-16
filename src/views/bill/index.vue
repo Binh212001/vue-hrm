@@ -2,14 +2,17 @@
   <div>
     <div class="flex justify-between items-center mb-3">
       <div>
-        <Button type="primary" :disabled="!hasSelected" :loading="loading">
-          Reload
-        </Button>
-        <span style="margin-left: 8px">
-          <template v-if="hasSelected">
-            {{ `Selected ${selectedRowKeys.length} items` }}
-          </template>
-        </span>
+        <Button type="primary" v-if="selectedRowKeys.length == 0"> New </Button>
+        <div class="inline" v-if="selectedRowKeys.length > 0">
+          <Button type="primary" :disabled="!hasSelected" :loading="loading">
+            Reload
+          </Button>
+          <span style="margin-left: 8px">
+            <template v-if="hasSelected">
+              {{ `Selected ${selectedRowKeys.length} items` }}
+            </template>
+          </span>
+        </div>
       </div>
       <div>
         <Icon icon="clarity:import-line"></Icon>
@@ -49,20 +52,20 @@ export default defineComponent({
       selectedRowKeys: [],
       columns: [
         {
-          title: "Name",
-          dataIndex: "name",
+          title: "ID",
+          dataIndex: "id",
         },
         {
-          title: "Price",
-          dataIndex: "price",
+          title: "Customer",
+          dataIndex: "customer",
         },
         {
-          title: "Quantity",
-          dataIndex: "quantity",
+          title: "Phone",
+          dataIndex: "phone",
         },
         {
-          title: "Category",
-          dataIndex: "category",
+          title: "Date",
+          dataIndex: "date",
         },
       ],
       data: [],

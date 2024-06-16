@@ -1,104 +1,70 @@
 <template>
   <div>
-    <ViewHeader></ViewHeader>
-    <table style="width: 100%" class="shadow">
-      <thead>
-        <tr>
-          <th class="text-center">
-            <input type="checkbox" />
-          </th>
-          <th>EMPLOYEE</th>
-          <th>MONTH</th>
-          <th>YEAR</th>
-          <th>STATUS</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th class="text-center">
-            <input type="checkbox" />
-          </th>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-        </tr>
-        <tr>
-          <th class="text-center">
-            <input type="checkbox" />
-          </th>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-        </tr>
-        <tr>
-          <th class="text-center">
-            <input type="checkbox" />
-          </th>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-        </tr>
-        <tr>
-          <th class="text-center">
-            <input type="checkbox" />
-          </th>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-        </tr>
-        <tr>
-          <th class="text-center">
-            <input type="checkbox" />
-          </th>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-        </tr>
-        <tr>
-          <th class="text-center">
-            <input type="checkbox" />
-          </th>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="flex justify-between items-center mb-3">
+      <div>
+        <Button type="primary" :disabled="!hasSelected" :loading="loading">
+          Reload
+        </Button>
+        <span style="margin-left: 8px">
+          <template v-if="hasSelected">
+            {{ `Selected ${selectedRowKeys.length} items` }}
+          </template>
+        </span>
+      </div>
+      <div>
+        <Icon icon="clarity:import-line"></Icon>
+      </div>
+    </div>
+    <Table
+      :row-selection="{
+        selectedRowKeys: selectedRowKeys,
+        onChange: onSelectChange,
+      }"
+      :columns="columns"
+      :data-source="data"
+    ></Table>
   </div>
 </template>
+<script lang="ts">
+import { computed, defineComponent, reactive } from "vue";
+import { Button, Table } from "ant-design-vue";
+import { Icon } from "@iconify/vue";
 
-<script>
-import { useTabStore } from "@/stores/TabStore";
-import ViewHeader from "../../common/ViewHeader.vue";
-import { defineComponent, onMounted } from "vue";
+type Key = string | number;
+
 export default defineComponent({
-  setup() {
-    const tabStore = useTabStore();
-    onMounted(() => {
-      tabStore.getChildTab("shift");
-    });
+  components: { Button, Table },
+  created() {},
+  computed: {},
+  methods: {
+    onSelectChange: (selectedRowKeys: Key[]) => {
+      selectedRowKeys = selectedRowKeys;
+    },
   },
   data() {
-    return {};
-  },
-  components: {
-    ViewHeader,
+    return {
+      loading: false,
+      selectedRowKeys: [],
+      columns: [
+        {
+          title: "Name",
+          dataIndex: "name",
+        },
+        {
+          title: "Price",
+          dataIndex: "price",
+        },
+        {
+          title: "Quantity",
+          dataIndex: "quantity",
+        },
+        {
+          title: "Category",
+          dataIndex: "category",
+        },
+      ],
+      data: [],
+    };
   },
 });
 </script>
-
-<style>
-th,
-tr,
-td {
-  border: 1px solid #f7f4f4;
-  padding: 5px;
-  text-align: center;
-}
-</style>

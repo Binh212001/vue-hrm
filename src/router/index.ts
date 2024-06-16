@@ -63,11 +63,22 @@ const router = createRouter({
       name: "product",
       component: () => import("../views/product/index.vue"),
     },
-    //product
+
+    {
+      path: "/product/productID/:id",
+      name: "product-detail",
+      component: () => import("../views/product/productdetail.vue"),
+    },
+    //bill
     {
       path: "/bill",
       name: "bill",
       component: () => import("../views/bill/index.vue"),
+    },
+    {
+      path: "/bill/add",
+      name: "add-bill",
+      component: () => import("../views/bill/add.vue"),
     },
   ],
 });
